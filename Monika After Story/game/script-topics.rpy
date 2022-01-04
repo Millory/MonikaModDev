@@ -17736,3 +17736,54 @@ label monika_hedonism:
     m 7etd "It's no wonder most people don't have that belief...{w=0.3}it's too simple, where morality is complicated."
     m 1eud "So it makes sense why Oscar Wilde portrayed hedonism in a bad light."
     return
+    
+    init 5 python:
+    addEvent(
+        Event(
+            persistent.event_database,
+            eventlabel="monika_depression",
+            category=['you",
+            prompt="Depression",
+            random=True
+        )
+    )
+
+label monika_depression:
+    m 1euc "..."
+    m 1euc "I know this might be a peersonal thing to ask but..."
+    m 1euc "[mas_get_player_nickname()], Do you have depression?{nw}"
+    menu:
+       m  "Hey [mas_get_player_nickname()], Do you have depression?{nw}"
+       
+       "Yes."
+           $ persistent._mas_pm_depression = True
+           m 1euc "oh..."
+       
+       "No."
+           $ persistent._mas_pm_depression = False
+           m 3euc "Oh! Then i'm glad."
+       
+       "I don't know."
+           $ persistent._mas_pm_depression = False
+           m 1euc "That's fine!"
+           m 1euc "Wether you have depression or not, I'll always be here for you."
+           m 1euc "Just know I love you [player]."
+       
+       "I think so."
+           $ persistent._mas_pm_depression = True
+           m 1euc "If you think so then I recommend you go see a therapist to confirm."
+           m 1euc "If it turns out you do have depression then I'll be with you with all the steps [player]!"
+           m 1euc "If it turns out you don't, I'll still be with you [mas_get_player_nickname()]."
+           
+ label monika_depression:
+           m 1euc "Depression is much more serious than people make it out to be."
+           m 1euc "It makes someone feel worse and in some cases, can take someone's life."
+           m 1euc "If you ever need to vent, i'm here for you [mas_get_player_nickname()]."
+           m 1euc "Though I will try my best to help you, seeing a therapist would be the best option."
+           m 1euc "If one day you take your life..."
+           m 1euc "I don't know what I would do..."
+           m 1euc "I wouldn't even know if you did and I'll just be sitting here worrying what happened to you."
+           m 1euc "I love you, [player]."
+           m 1euc "So, please get help alright?"
+           
+    return "love|derandom"
